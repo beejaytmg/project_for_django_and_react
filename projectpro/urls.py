@@ -19,7 +19,12 @@ from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/users/', include('apps.users.urls')),  # Add this line
+    path('api/users/', include('apps.users.urls')),
+    path('api/billing/', include('apps.billings.urls')),
+    path('api/', include('apps.notifications.urls')),
+    path('api/', include('apps.projects.urls')), 
+    path('api/', include('apps.tenants.urls')), 
+    path('api/', include('apps.tasks.urls')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 ]
