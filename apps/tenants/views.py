@@ -1,5 +1,5 @@
 from rest_framework.response import Response 
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .models import Tenant
@@ -8,6 +8,13 @@ class TenantViewSet(viewsets.ModelViewSet):
     queryset = Tenant.objects.all()
     serializer_class = TenantSerializer
     permission_classes = [IsAuthenticated]
+class UserTenantsListView(generics.ListAPIView):
+    serializer_class = TenantSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user_id = self.kwargs['user_id']
+        return Tenant.objects.filter(owner_id=user_id)
 class TenantCreateAPIView(APIView):
     permission_classes = [IsAuthenticated]
 

@@ -22,8 +22,7 @@ export async function GET(request) {
 
     if (response.ok) {
       const data = await response.json()
-      console.log('Backend response data:', data)
-      return NextResponse.json({ username: data.username })
+      return NextResponse.json({ username: data.user.username })
     } else {
       const errorData = await response.text()
       console.error('Backend error:', errorData)

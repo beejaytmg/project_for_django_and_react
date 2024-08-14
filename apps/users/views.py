@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserLoginSerializer
+from .serializers import UserSerializer, UserLoginSerializer, UserProfileViewSerializer
 from rest_framework import generics, permissions, exceptions, serializers, status
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -34,5 +34,8 @@ class UserLoginView(generics.GenericAPIView):
 class UserProfileView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
+
     def get(self, request):
-        return Response({'username': request.user.username})
+        user = request.user
+        user_data = UserProfileViewSerializer(user).data  # Serialize the user object
+        return Response({'user': user_data})

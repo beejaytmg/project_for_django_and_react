@@ -5,6 +5,7 @@ class TenantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tenant
         fields ='__all__'
+        
 class TenantCreateSerializer(serializers.ModelSerializer):
     owner_username = serializers.CharField(write_only=True) 
     class Meta:
