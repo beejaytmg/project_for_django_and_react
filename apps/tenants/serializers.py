@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Tenant
-from apps.users.models import User
+from django.contrib.auth.models import User
 class TenantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tenant

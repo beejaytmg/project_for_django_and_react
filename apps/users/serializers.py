@@ -1,11 +1,14 @@
-from .models import User
+from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.exceptions import ObjectDoesNotExist
 
 class UserSerializer(serializers.ModelSerializer):
+    access_token = serializers.SerializerMethodField()
+    refresh_token = serializers.SerializerMethodField()
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'password', 'access_token', 'refresh_token')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -14,13 +17,13 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+    def get_access_token(self, obj):
+        refresh = RefreshToken.for_user(obj)
+        return str(refresh.access_token)
+
+    def get_refresh_token(self, obj):
+        refresh = RefreshToken.for_user(obj)
+        return str(refresh)
 class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True, max_length=150)
-    password = serializers.CharField(required=True, style={'input_type': 'password'})
-    def validate(self, data):
-        try:
-            user = User.objects.get(username=data.get('username'))
-            if user.check_password(data.get('password')):
-                return {'user': user}
-        except ObjectDoesNotExist:
-            raise serializers.ValidationError("Invalid credentials")
+    username = serializers.CharField()
+    password = serializers.CharField()

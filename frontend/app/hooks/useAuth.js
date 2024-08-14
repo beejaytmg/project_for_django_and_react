@@ -48,9 +48,18 @@ export function useAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       })
-      return response.ok
+      const data = await response.json()
+      if (response.ok) {
+        setAccessToken(data.access_token)
+        setRefreshToken(data.refresh_token)
+        localStorage.setItem('accessToken', data.access_token)
+        localStorage.setItem('refreshToken', data.refresh_token)
+        router.push('/')  // Redirect to home page after successful login
+        return true
+      }
+      return false
     } catch (error) {
-      console.error('Registration error:', error)
+      console.error('register error:', error)
       return false
     }
   }

@@ -16,12 +16,12 @@ export default function Register() {
       const success = await register(username, password)
       if (success) {
         alert('Registration successful')
-        router.push('/login')  // Redirect to login page after successful registration
+        router.push('/')  // Redirect to login page after successful registration
       } else {
         alert('Registration failed')
       }
     } catch (error) {
-      console.error('Error:', error)
+      // console.error('Error:', error)
       alert('An error occurred during registration')
     }
   }

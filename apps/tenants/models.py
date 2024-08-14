@@ -1,7 +1,7 @@
 
 
 from django.db import models
-from apps.users.models import User
+from django.contrib.auth.models import User
 class Tenant(models.Model):
     name = models.CharField(max_length=150)  # Changed to CharField for proper text handling
     domain = models.CharField(max_length=255, unique=True)  # Domain or subdomain for the tenant
