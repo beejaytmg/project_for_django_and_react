@@ -1,6 +1,4 @@
-Here's an updated `README.md` file that includes instructions for setting up and running both the Django backend and the Next.js frontend:
 
-```markdown
 # ProjectPro
 
 **Primary Function:**  
@@ -30,18 +28,6 @@ ProjectPro is a project management platform designed to help businesses, teams, 
 
 ### Requirements
 
-Ensure you have the following dependencies installed:
-
-```plaintext
-asgiref==3.8.1
-Django==5.1
-djangorestframework==3.15.2
-djangorestframework-simplejwt==5.3.1
-pillow==10.4.0
-PyJWT==2.9.0
-sqlparse==0.5.1
-typing_extensions==4.12.2
-```
 
 To install the required packages, run:
 
@@ -129,22 +115,19 @@ Ensure you have Node.js and npm (or yarn) installed. You can download and instal
 - **Admin Panel:** Access the Django admin panel at `http://127.0.0.1:8000/admin/` to manage tenants, projects, and users.
 - **User Interface:** After logging in, users can create and manage projects, assign tasks, and collaborate with their teams through the Next.js frontend.
 
-## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Contributions
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Contact
+bijayakumartamang.com.np
+For any inquiries or support, please contact us at [mail](mailto:mail@bijayakumartamang.com.np).
 
-For any inquiries or support, please contact us at [support@projectpro.com](mailto:support@projectpro.com).
-```
 
 ### Key Updates:
 - **Backend Setup**: Instructions for setting up the Django backend.
 - **Frontend Setup**: Instructions for setting up and running the Next.js frontend.
 - **Usage**: Instructions for using both the backend and frontend.
 
-This `README.md` file should help users get both the backend and frontend parts of your application up and running.
