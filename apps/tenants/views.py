@@ -13,8 +13,9 @@ class UserTenantsListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        user_id = self.kwargs['user_id']
-        return Tenant.objects.filter(owner_id=user_id)
+        # Use the authenticated user's ID
+        user = self.request.user
+        return Tenant.objects.filter(owner=user)
 class TenantCreateAPIView(APIView):
     permission_classes = [IsAuthenticated]
 

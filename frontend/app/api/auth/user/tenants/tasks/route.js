@@ -12,7 +12,7 @@ export async function GET(request) {
   console.log('Token:', token);
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/api/users/tenants', {
+    const response = await fetch('http://127.0.0.1:8000/api/user/tenant/task', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -22,7 +22,7 @@ export async function GET(request) {
 
     if (response.ok) {
       const data = await response.json();
-      return NextResponse.json({ tenants: data });
+      return NextResponse.json({ tasks: data });
     } else {
       const errorData = await response.text();
       console.error('Backend error:', errorData);

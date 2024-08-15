@@ -6,6 +6,6 @@ router = DefaultRouter()
 router.register(r'tenant', TenantViewSet)
 urlpatterns = [
     path('', include(router.urls)),
-    path('users/<int:user_id>/tenants/', UserTenantsListView.as_view(), name='user-tenants-list'),
+    path('users/tenants/', UserTenantsListView.as_view(), name='user-tenants-list'),
     path('tenant/create', TenantCreateAPIView.as_view(), name='create_tenant')
 ]

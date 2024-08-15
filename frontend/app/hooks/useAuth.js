@@ -71,7 +71,10 @@ export function useAuth() {
     localStorage.removeItem('refreshToken')
     router.push('/login')
   }
-
+  const tenants = () => {
+    localStorage.getItem("accessToken");
+    router.push('/dashboard/tenants')
+  }
   const refreshAccessToken = async () => {
     try {
       const response = await fetch('/api/auth/refresh', {
@@ -92,5 +95,5 @@ export function useAuth() {
     }
   }
 
-  return { accessToken, login, register, logout, refreshAccessToken }  // Added register here
+  return { accessToken, login, register, logout, refreshAccessToken, tenants }  // Added register here
 }

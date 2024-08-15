@@ -24,9 +24,9 @@ export async function GET(request) {
       const data = await response.json()
       return NextResponse.json({ username: data.user.username })
     } else {
-      const errorData = await response.text()
+      const errorData = await response.json()
       console.error('Backend error:', errorData)
-      return NextResponse.json({ error: 'Failed to fetch user data' }, { status: response.status })
+      return NextResponse.json({'error': errorData})
     }
   } catch (error) {
     console.error('Error:', error)
